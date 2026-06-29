@@ -66,12 +66,12 @@ nav a:hover {
 .hero-inner {
     display: flex;
     align-items: center;
-    gap: 48px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.sprite-wrap img {
+.sprite-wrap canvas {
     height: 320px;
     width: auto;
     display: block;

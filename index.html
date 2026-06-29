@@ -24,7 +24,7 @@
     <section id="home" class="section hero">
         <div class="hero-inner">
             <div class="sprite-wrap">
-                <img id="sprite" src="images/frame_1.jpg" alt="Eton">
+                <canvas id="sprite-canvas"></canvas>
             </div>
             <div class="hero-text">
                 <h1>Eton's Shonanigans</h1>
@@ -33,10 +33,37 @@
         </div>
     </section>
     <script>
-        const frames = ['images/frame_1.jpg', 'images/frame_2.jpg', 'images/frame_3.jpg'];
-        let i = 0;
-        const sprite = document.getElementById('sprite');
-        setInterval(() => { i = (i + 1) % frames.length; sprite.src = frames[i]; }, 1000 / 12);
+        const srcs = ['images/frame_1.jpg', 'images/frame_2.jpg', 'images/frame_3.jpg'];
+        const bitmaps = [];
+        let loaded = 0;
+        srcs.forEach((src, idx) => {
+            const img = new Image();
+            img.onload = () => {
+                createImageBitmap(img).then(bmp => {
+                    bitmaps[idx] = bmp;
+                    if (++loaded === srcs.length) startLoop();
+                });
+            };
+            img.src = src;
+        });
+
+        function startLoop() {
+            const canvas = document.getElementById('sprite-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = bitmaps[0].width;
+            canvas.height = bitmaps[0].height;
+            const interval = 1000 / 12;
+            let frame = 0, last = 0;
+            function tick(ts) {
+                if (ts - last >= interval) {
+                    ctx.drawImage(bitmaps[frame], 0, 0);
+                    frame = (frame + 1) % bitmaps.length;
+                    last = ts;
+                }
+                requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        }
     </script>
 
     <section id="about" class="section">
