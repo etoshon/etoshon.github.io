@@ -71,6 +71,11 @@ nav a:hover {
     margin-top: -80px;
 }
 
+.sprite-wrap {
+    overflow: hidden;
+    height: 510px;
+}
+
 .sprite-wrap canvas {
     height: 520px;
     width: auto;
