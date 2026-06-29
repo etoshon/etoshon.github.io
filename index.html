@@ -12,16 +12,16 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#music">Music</a></li>
-            <li><a href="#animation">Animation</a></li>
-            <li><a href="#photography">Photography</a></li>
-            <li><a href="#product">Product</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="animation.html">Animation</a></li>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="product.html">Product</a></li>
         </ul>
     </nav>
 
-    <section id="home" class="section hero">
+    <section class="hero">
         <div class="hero-inner">
             <div class="sprite-wrap">
                 <canvas id="sprite-canvas"></canvas>
@@ -32,6 +32,7 @@
             </div>
         </div>
     </section>
+
     <script>
         const srcs = ['images/frame_1.jpg', 'images/frame_2.jpg', 'images/frame_3.jpg'];
         const bitmaps = [];
@@ -65,105 +66,5 @@
             requestAnimationFrame(tick);
         }
     </script>
-
-    <section id="about" class="section">
-        <div class="content">
-            <h2>About</h2>
-            <p>Hello! I'm Eton, a creative professional passionate about music, animation, photography, and product design. With a background in [your background], I strive to create meaningful and impactful work in each of these areas.</p>
-            <p>This portfolio showcases my journey and achievements. Feel free to explore the different sections to learn more about my work.</p>
-        </div>
-    </section>
-
-    <section id="music" class="section">
-        <div class="content">
-            <h2>Music</h2>
-            <p>Here are some videos of my musical performances. Enjoy!</p>
-            <div class="video-container">
-                <h3>Performance 1</h3>
-                <video controls>
-                    <source src="videos/performance1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="video-container">
-                <h3>Performance 2</h3>
-                <video controls>
-                    <source src="videos/performance2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </section>
-
-    <section id="animation" class="section">
-        <div class="content">
-            <h2>Animation</h2>
-            <p>Check out some of my animation projects below.</p>
-            <div class="video-container">
-                <h3>Animation 1</h3>
-                <video controls>
-                    <source src="videos/animation1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="video-container">
-                <h3>Animation 2</h3>
-                <video controls>
-                    <source src="videos/animation2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </section>
-
-    <section id="photography" class="section">
-        <div class="content">
-            <h2>Photography</h2>
-            <p>A selection of my photography work.</p>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="images/photo1.jpg" alt="Photo 1">
-                    <p>Photo 1 Description</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/photo2.jpg" alt="Photo 2">
-                    <p>Photo 2 Description</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/photo3.jpg" alt="Photo 3">
-                    <p>Photo 3 Description</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/photo4.jpg" alt="Photo 4">
-                    <p>Photo 4 Description</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="product" class="section">
-        <div class="content">
-            <h2>Product</h2>
-            <p>Gallery of designs and products I have helped build.</p>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="images/product1.jpg" alt="Product 1">
-                    <p>Product 1 Description</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/product2.jpg" alt="Product 2">
-                    <p>Product 2 Description</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/product3.jpg" alt="Product 3">
-                    <p>Product 3 Description</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/product4.jpg" alt="Product 4">
-                    <p>Product 4 Description</p>
-                </div>
-            </div>
-        </div>
-    </section>
 </body>
 </html>
