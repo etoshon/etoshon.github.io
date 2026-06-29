@@ -22,11 +22,22 @@
     </nav>
 
     <section id="home" class="section hero">
-        <div class="content">
-            <h1>Eton's Shonanigans</h1>
-            <p>Music &middot; Animation &middot; Photography &middot; Product</p>
+        <div class="hero-inner">
+            <div class="sprite-wrap">
+                <img id="sprite" src="images/frame_1.jpg" alt="Eton">
+            </div>
+            <div class="hero-text">
+                <h1>Eton's Shonanigans</h1>
+                <p>Music &middot; Animation &middot; Photography &middot; Product</p>
+            </div>
         </div>
     </section>
+    <script>
+        const frames = ['images/frame_1.jpg', 'images/frame_2.jpg', 'images/frame_3.jpg'];
+        let i = 0;
+        const sprite = document.getElementById('sprite');
+        setInterval(() => { i = (i + 1) % frames.length; sprite.src = frames[i]; }, 1000 / 12);
+    </script>
 
     <section id="about" class="section">
         <div class="content">

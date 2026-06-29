@@ -60,8 +60,26 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     background-color: #ebe3d0;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sprite-wrap img {
+    height: 320px;
+    width: auto;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+.hero-text {
+    text-align: left;
 }
 
 .hero h1 {
