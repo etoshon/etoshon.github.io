@@ -168,3 +168,25 @@ video {
     height: auto;
     border-radius: 4px;
 }
+
+.music-label {
+    margin-top: 48px;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+}
+
+.video-embed iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 4px;
+    display: block;
+}
