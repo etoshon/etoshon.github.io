@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
+
 * {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
     margin: 0;
     padding: 0;
-    background-color: #ebe3d0;
-    color: #2c1f0e;
+    background-color: #ffffff;
+    color: #000000;
     line-height: 1.7;
     min-height: 100vh;
 }
@@ -16,8 +19,8 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: #e5dac8;
-    border-bottom: 1px solid #c9a96e;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
     padding: 12px 0;
 }
 
@@ -37,19 +40,20 @@ nav li {
 
 nav a {
     text-decoration: none;
-    color: #2c1f0e;
+    color: #000000;
     font-size: 1rem;
+    font-weight: 300;
     letter-spacing: 0.03em;
     transition: color 0.2s;
 }
 
 nav a:hover {
-    color: #7a5c2e;
+    color: #555555;
 }
 
 .section {
     padding: 80px 20px;
-    border-bottom: 1px solid #d8c898;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .section:last-child {
@@ -90,14 +94,15 @@ nav a:hover {
 
 .hero h1 {
     font-size: 3.5rem;
+    font-weight: 300;
+    font-style: normal;
     margin-bottom: 8px;
-    font-style: italic;
 }
 
 .hero p {
     font-size: 1.1rem;
     letter-spacing: 0.08em;
-    color: #5a3e20;
+    color: #555555;
     margin: 0;
 }
 
@@ -112,19 +117,22 @@ nav a:hover {
 
 h1 {
     font-size: 2.8rem;
+    font-weight: 300;
     margin-bottom: 16px;
 }
 
 h2 {
     font-size: 2.2rem;
+    font-weight: 300;
+    font-style: normal;
     margin-bottom: 20px;
-    font-style: italic;
-    border-bottom: 1px solid #c9a96e;
+    border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
 }
 
 h3 {
     font-size: 1.3rem;
+    font-weight: 300;
     margin-bottom: 10px;
 }
 
@@ -147,7 +155,7 @@ p {
 .gallery-item img {
     max-width: 100%;
     height: auto;
-    border: 1px solid #c9a96e;
+    border: 1px solid #e0e0e0;
     border-radius: 4px;
 }
 
