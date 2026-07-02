@@ -1,12 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
+@font-face {
+    font-family: 'Alte Haas Grotesk';
+    src: url('alte_haas_grotesk/AlteHaasGroteskRegular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Alte Haas Grotesk';
+    src: url('alte_haas_grotesk/AlteHaasGroteskBold.ttf') format('truetype');
+    font-weight: 700;
+}
 
 * {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
+    font-family: 'Alte Haas Grotesk', sans-serif;
+    font-weight: 400;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
@@ -42,7 +52,7 @@ nav a {
     text-decoration: none;
     color: #000000;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.03em;
     transition: color 0.2s;
 }
@@ -94,7 +104,7 @@ nav a:hover {
 
 .hero h1 {
     font-size: 3.5rem;
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
     margin-bottom: 8px;
 }
@@ -117,13 +127,13 @@ nav a:hover {
 
 h1 {
     font-size: 2.8rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 16px;
 }
 
 h2 {
     font-size: 2.2rem;
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
     margin-bottom: 20px;
     border-bottom: 1px solid #e0e0e0;
@@ -132,7 +142,7 @@ h2 {
 
 h3 {
     font-size: 1.3rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 10px;
 }
 
