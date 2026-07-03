@@ -273,15 +273,11 @@ video {
 }
 
 .project-list {
-    margin-top: 24px;
+    margin-top: 0;
 }
 
 .project-item {
     border-bottom: 1px solid #e0e0e0;
-}
-
-.project-item:first-child {
-    border-top: 1px solid #e0e0e0;
 }
 
 .project-title {
