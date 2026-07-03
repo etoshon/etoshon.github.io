@@ -39,6 +39,7 @@
             const totalNeeded = sSrcs.length + pSrcs.length;
             let ready = false;
             let hovering = false;
+            let rowBounds = null;
 
             function loadSrc(src, arr, idx) {
                 const img = new Image();
@@ -51,12 +52,37 @@
                             const aspect = canvas.width / canvas.height;
                             canvas.style.height = displayHeight + 'px';
                             canvas.style.width = Math.round(displayHeight * aspect) + 'px';
+                            rowBounds = buildBoundary([...bitmaps.s, ...bitmaps.p]);
                             ready = true;
                             startLoop();
                         }
                     });
                 };
                 img.src = src;
+            }
+
+            function buildBoundary(allBmps) {
+                const w = canvas.width, h = canvas.height;
+                const tmp = document.createElement('canvas');
+                tmp.width = w; tmp.height = h;
+                const tc = tmp.getContext('2d');
+                const left = new Int32Array(h).fill(w);
+                const right = new Int32Array(h).fill(-1);
+                for (const bmp of allBmps) {
+                    tc.drawImage(bmp, 0, 0);
+                    const data = tc.getImageData(0, 0, w, h).data;
+                    for (let y = 0; y < h; y++) {
+                        const row = y * w;
+                        for (let x = 0; x < w; x++) {
+                            const i = (row + x) * 4;
+                            if ((255 - data[i]) + (255 - data[i+1]) + (255 - data[i+2]) > 20) {
+                                if (x < left[y]) left[y] = x;
+                                if (x > right[y]) right[y] = x;
+                            }
+                        }
+                    }
+                }
+                return { left, right };
             }
 
             sSrcs.forEach((src, i) => loadSrc(src, bitmaps.s, i));
@@ -89,8 +115,9 @@
                     return;
                 }
                 const px = ctx.getImageData(x, y, 1, 1).data;
-                const darkness = (255 - px[0]) + (255 - px[1]) + (255 - px[2]);
-                hovering = darkness > 20;
+                const onDrawn = (255 - px[0]) + (255 - px[1]) + (255 - px[2]) > 20;
+                const insideBoundary = rowBounds && x >= rowBounds.left[y] && x <= rowBounds.right[y];
+                hovering = onDrawn || insideBoundary;
             }
 
             canvas.addEventListener('mousemove', checkHover);
