@@ -21,47 +21,94 @@
     <section class="hero">
         <div class="hero-inner">
             <div class="sprite-wrap">
-                <canvas id="sprite-canvas"></canvas>
+                <canvas id="about-canvas"></canvas>
             </div>
             <div class="hero-text">
-                <h1>Eton's Shonanigans</h1>
+                <h1>Eton's Shonanigan<span class="last-s">s<canvas id="tomato-canvas"></canvas></span></h1>
                 <p>Music &middot; Animation &middot; Photography &middot; Product</p>
             </div>
         </div>
     </section>
 
     <script>
-        const srcs = ['images/frame_1.jpg', 'images/frame_2.jpg', 'images/frame_3.jpg'];
-        const bitmaps = [];
-        let loaded = 0;
-        srcs.forEach((src, idx) => {
-            const img = new Image();
-            img.onload = () => {
-                createImageBitmap(img).then(bmp => {
-                    bitmaps[idx] = bmp;
-                    if (++loaded === srcs.length) startLoop();
-                });
-            };
-            img.src = src;
-        });
-
-        function startLoop() {
-            const canvas = document.getElementById('sprite-canvas');
+        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight) {
+            const canvas = document.getElementById(canvasId);
             const ctx = canvas.getContext('2d');
-            canvas.width = bitmaps[0].width;
-            canvas.height = bitmaps[0].height;
-            const interval = 1000 / 12;
-            let frame = 0, last = 0;
-            function tick(ts) {
-                if (ts - last >= interval) {
-                    ctx.drawImage(bitmaps[frame], 0, 0);
-                    frame = (frame + 1) % bitmaps.length;
-                    last = ts;
+            const bitmaps = { s: new Array(sSrcs.length), p: new Array(pSrcs.length) };
+            let totalLoaded = 0;
+            const totalNeeded = sSrcs.length + pSrcs.length;
+            let ready = false;
+            let hovering = false;
+
+            function loadSrc(src, arr, idx) {
+                const img = new Image();
+                img.onload = () => {
+                    createImageBitmap(img).then(bmp => {
+                        arr[idx] = bmp;
+                        if (++totalLoaded === totalNeeded) {
+                            canvas.width = bitmaps.s[0].width;
+                            canvas.height = bitmaps.s[0].height;
+                            const aspect = canvas.width / canvas.height;
+                            canvas.style.height = displayHeight + 'px';
+                            canvas.style.width = Math.round(displayHeight * aspect) + 'px';
+                            ready = true;
+                            startLoop();
+                        }
+                    });
+                };
+                img.src = src;
+            }
+
+            sSrcs.forEach((src, i) => loadSrc(src, bitmaps.s, i));
+            pSrcs.forEach((src, i) => loadSrc(src, bitmaps.p, i));
+
+            function startLoop() {
+                const interval = 1000 / 12;
+                let frame = 0, last = 0;
+                function tick(ts) {
+                    if (ts - last >= interval) {
+                        const frames = hovering ? bitmaps.p : bitmaps.s;
+                        ctx.drawImage(frames[frame % frames.length], 0, 0);
+                        frame++;
+                        last = ts;
+                    }
+                    requestAnimationFrame(tick);
                 }
                 requestAnimationFrame(tick);
             }
-            requestAnimationFrame(tick);
+
+            function checkHover(e) {
+                if (!ready) return;
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                const x = Math.floor((e.clientX - rect.left) * scaleX);
+                const y = Math.floor((e.clientY - rect.top) * scaleY);
+                if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) {
+                    hovering = false;
+                    return;
+                }
+                const px = ctx.getImageData(x, y, 1, 1).data;
+                hovering = !(px[0] > 240 && px[1] > 240 && px[2] > 240);
+            }
+
+            canvas.addEventListener('mousemove', checkHover);
+            canvas.addEventListener('mouseleave', () => { hovering = false; });
         }
+
+        makeAnim(
+            'about-canvas',
+            ['images/about/about_1_s.jpg', 'images/about/about_2_s.jpg', 'images/about/about_3_s.jpg'],
+            ['images/about/about_1_p.jpg', 'images/about/about_2_p.jpg', 'images/about/about_3_p.jpg'],
+            520
+        );
+
+        makeAnim(
+            'tomato-canvas',
+            ['images/tomato/tomato_1_s.jpg', 'images/tomato/tomato_2_s.jpg', 'images/tomato/tomato_3_s.jpg'],
+            ['images/tomato/tomato_1_p.jpg', 'images/tomato/tomato_2_p.jpg', 'images/tomato/tomato_3_p.jpg'],
+            90
+        );
     </script>
 </body>
 </html>
