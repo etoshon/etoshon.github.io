@@ -1,13 +1,8 @@
 @font-face {
-    font-family: 'Alte Haas Grotesk';
-    src: url('alte_haas_grotesk/AlteHaasGroteskRegular.ttf') format('truetype');
+    font-family: 'Magyar Nemzet';
+    src: url('FFF_Magyar_Nemzet/WEB/FFF_Magyar-Nemzet-Bold.woff2') format('woff2'),
+         url('FFF_Magyar_Nemzet/WEB/FFF_Magyar-Nemzet-Bold.woff') format('woff');
     font-weight: 400;
-}
-
-@font-face {
-    font-family: 'Alte Haas Grotesk';
-    src: url('alte_haas_grotesk/AlteHaasGroteskBold.ttf') format('truetype');
-    font-weight: 700;
 }
 
 * {
@@ -15,7 +10,7 @@
 }
 
 body {
-    font-family: 'Alte Haas Grotesk', sans-serif;
+    font-family: 'Magyar Nemzet', sans-serif;
     font-weight: 400;
     margin: 0;
     padding: 0;
