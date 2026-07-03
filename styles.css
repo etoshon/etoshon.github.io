@@ -1,8 +1,13 @@
 @font-face {
-    font-family: 'Badsag';
-    src: url('FFF_NEPSZA%20BADSAG/WEB/FFF_NEPSZA-BADSAG-Bold.woff2') format('woff2'),
-         url('FFF_NEPSZA%20BADSAG/WEB/FFF_NEPSZA-BADSAG-Bold.woff') format('woff');
+    font-family: 'Alte Haas Grotesk';
+    src: url('alte_haas_grotesk/AlteHaasGroteskRegular.ttf') format('truetype');
     font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Alte Haas Grotesk';
+    src: url('alte_haas_grotesk/AlteHaasGroteskBold.ttf') format('truetype');
+    font-weight: 700;
 }
 
 * {
@@ -10,7 +15,7 @@
 }
 
 body {
-    font-family: 'Badsag', sans-serif;
+    font-family: 'Alte Haas Grotesk', sans-serif;
     font-weight: 400;
     margin: 0;
     padding: 0;
