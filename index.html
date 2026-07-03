@@ -24,7 +24,7 @@
                 <canvas id="about-canvas"></canvas>
             </div>
             <div class="hero-text">
-                <h1>Eton's Shonanigan<span class="last-s">s<canvas id="tomato-canvas"></canvas></span></h1>
+                <h1><span class="first-e">E<canvas id="tomato-canvas"></canvas></span>ton's Shonanigans</h1>
                 <p>Music &middot; Animation &middot; Photography &middot; Product</p>
             </div>
         </div>
@@ -90,7 +90,7 @@
                 }
                 const px = ctx.getImageData(x, y, 1, 1).data;
                 const darkness = (255 - px[0]) + (255 - px[1]) + (255 - px[2]);
-                hovering = darkness > 80;
+                hovering = darkness > 20;
             }
 
             canvas.addEventListener('mousemove', checkHover);
@@ -108,7 +108,7 @@
             'tomato-canvas',
             ['images/tomato/tomato_1_s.jpg', 'images/tomato/tomato_2_s.jpg', 'images/tomato/tomato_3_s.jpg'],
             ['images/tomato/tomato_1_p.jpg', 'images/tomato/tomato_2_p.jpg', 'images/tomato/tomato_3_p.jpg'],
-            220
+            440
         );
     </script>
 </body>
