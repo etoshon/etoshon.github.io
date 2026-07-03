@@ -31,7 +31,7 @@
     </section>
 
     <script>
-        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight) {
+        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight, clickUrl) {
             const canvas = document.getElementById(canvasId);
             const ctx = canvas.getContext('2d');
             const bitmaps = { s: new Array(sSrcs.length), p: new Array(pSrcs.length) };
@@ -120,22 +120,33 @@
                 hovering = onDrawn || insideBoundary;
             }
 
-            canvas.addEventListener('mousemove', checkHover);
-            canvas.addEventListener('mouseleave', () => { hovering = false; });
+            canvas.addEventListener('mousemove', e => {
+                checkHover(e);
+                canvas.style.cursor = hovering ? 'pointer' : 'default';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                hovering = false;
+                canvas.style.cursor = 'default';
+            });
+            canvas.addEventListener('click', () => {
+                if (hovering && clickUrl) window.location.href = clickUrl;
+            });
         }
 
         makeAnim(
             'about-canvas',
             ['images/about/about_1_s.jpg', 'images/about/about_2_s.jpg', 'images/about/about_3_s.jpg'],
             ['images/about/about_1_p.jpg', 'images/about/about_2_p.jpg', 'images/about/about_3_p.jpg'],
-            520
+            520,
+            'about.html'
         );
 
         makeAnim(
             'tomato-canvas',
             ['images/tomato/tomato_1_s.jpg', 'images/tomato/tomato_2_s.jpg', 'images/tomato/tomato_3_s.jpg'],
             ['images/tomato/tomato_1_p.jpg', 'images/tomato/tomato_2_p.jpg', 'images/tomato/tomato_3_p.jpg'],
-            440
+            440,
+            'animation.html'
         );
     </script>
 </body>
