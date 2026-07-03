@@ -271,3 +271,19 @@ video {
     width: 100%;
     margin-top: 16px;
 }
+
+.about-layout {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-photo img {
+    width: 260px;
+    display: block;
+    border-radius: 2px;
+}
