@@ -272,6 +272,48 @@ video {
     margin-top: 16px;
 }
 
+.project-list {
+    margin-top: 24px;
+}
+
+.project-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.project-item:first-child {
+    border-top: 1px solid #e0e0e0;
+}
+
+.project-title {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    user-select: none;
+}
+
+.project-title::-webkit-details-marker { display: none; }
+
+.project-title::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    transition: transform 0.2s;
+}
+
+.project-item[open] .project-title::after {
+    transform: rotate(45deg);
+}
+
+.project-body {
+    padding: 0 0 20px 0;
+    color: #444;
+}
+
 .about-layout {
     display: flex;
     gap: 48px;
