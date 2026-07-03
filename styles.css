@@ -102,8 +102,8 @@ nav a:hover {
 
 #tomato-canvas {
     position: absolute;
-    bottom: 60%;
-    left: -180px;
+    bottom: calc(60% - 100px);
+    left: -230px;
     display: block;
     mix-blend-mode: multiply;
 }
