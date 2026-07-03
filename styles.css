@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'Magyar Nemzet';
-    src: url('FFF_Magyar_Nemzet/WEB/FFF_Magyar-Nemzet-Bold.woff2') format('woff2'),
-         url('FFF_Magyar_Nemzet/WEB/FFF_Magyar-Nemzet-Bold.woff') format('woff');
+    font-family: 'Badsag';
+    src: url('FFF_NEPSZA%20BADSAG/WEB/FFF_NEPSZA-BADSAG-Bold.woff2') format('woff2'),
+         url('FFF_NEPSZA%20BADSAG/WEB/FFF_NEPSZA-BADSAG-Bold.woff') format('woff');
     font-weight: 400;
 }
 
@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: 'Magyar Nemzet', sans-serif;
+    font-family: 'Badsag', sans-serif;
     font-weight: 400;
     margin: 0;
     padding: 0;
