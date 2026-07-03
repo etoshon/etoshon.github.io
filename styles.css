@@ -159,13 +159,76 @@ p {
 .gallery-item {
     break-inside: avoid;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
+    transition: opacity 0.2s;
 }
+
+.gallery-item img:hover {
+    opacity: 0.85;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox #lightbox-img {
+    max-width: 88vw;
+    max-height: 90vh;
+    object-fit: contain;
+    display: block;
+    cursor: default;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.lightbox-close:hover { opacity: 1; }
+
+.lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 16px 20px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    user-select: none;
+}
+
+.lightbox-nav:hover { opacity: 1; }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
 
 .video-container {
     margin: 28px 0;
