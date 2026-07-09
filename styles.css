@@ -95,6 +95,16 @@ nav a:hover {
     mix-blend-mode: multiply;
 }
 
+.figure-row {
+    display: flex;
+    align-items: center;
+}
+
+#photo-canvas {
+    display: block;
+    mix-blend-mode: multiply;
+}
+
 .first-e {
     position: relative;
     display: inline-block;

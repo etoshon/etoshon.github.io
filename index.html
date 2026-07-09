@@ -20,8 +20,11 @@
 
     <section class="hero">
         <div class="hero-inner">
-            <div class="sprite-wrap">
-                <canvas id="about-canvas"></canvas>
+            <div class="figure-row">
+                <div class="sprite-wrap">
+                    <canvas id="about-canvas"></canvas>
+                </div>
+                <canvas id="photo-canvas"></canvas>
             </div>
             <div class="hero-text">
                 <h1><span class="first-e">E<canvas id="tomato-canvas"></canvas></span>ton's Shonanigans</h1>
@@ -139,6 +142,15 @@
             ['images/about/about_1_p.jpg', 'images/about/about_2_p.jpg', 'images/about/about_3_p.jpg'],
             520,
             'about.html'
+        );
+
+        makeAnim(
+            'photo-canvas',
+            ['images/photo/port_1_s.jpg', 'images/photo/port_2_s.jpg', 'images/photo/port_3_s.jpg'],
+            ['images/photo/port_1_p.jpg', 'images/photo/port_2_p.jpg', 'images/photo/port_3_p.jpg',
+             'images/photo/port_4_p.jpg', 'images/photo/port_5_p.jpg', 'images/photo/port_6_p.jpg'],
+            440,
+            'photography.html'
         );
 
         makeAnim(
