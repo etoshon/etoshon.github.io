@@ -83,6 +83,7 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     margin-top: -80px;
+    position: relative;
 }
 
 .sprite-wrap {
@@ -95,12 +96,10 @@ nav a:hover {
     mix-blend-mode: multiply;
 }
 
-.figure-row {
-    display: flex;
-    align-items: center;
-}
-
 #photo-canvas {
+    position: absolute;
+    right: 8%;
+    bottom: 20%;
     display: block;
     mix-blend-mode: multiply;
 }
