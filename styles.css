@@ -98,7 +98,7 @@ nav a:hover {
 
 #photo-canvas {
     position: absolute;
-    right: 8%;
+    right: calc(8% + 80px);
     bottom: 20%;
     display: block;
     mix-blend-mode: multiply;
