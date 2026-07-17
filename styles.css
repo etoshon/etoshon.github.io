@@ -106,7 +106,7 @@ nav a:hover {
 
 #music-canvas {
     position: absolute;
-    left: calc(8% + 10px);
+    left: calc(8% - 5px);
     top: 5%;
     display: block;
     mix-blend-mode: multiply;
@@ -119,6 +119,7 @@ nav a:hover {
     top: 5%;
     display: block;
     mix-blend-mode: multiply;
+    transform: rotate(15deg);
 }
 
 .first-e {
@@ -129,7 +130,7 @@ nav a:hover {
 #tomato-canvas {
     position: absolute;
     bottom: calc(60% - 100px);
-    left: -230px;
+    left: -220px;
     display: block;
     mix-blend-mode: multiply;
 }
