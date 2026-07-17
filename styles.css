@@ -104,6 +104,14 @@ nav a:hover {
     mix-blend-mode: multiply;
 }
 
+#music-canvas {
+    position: absolute;
+    left: calc(8% + 10px);
+    top: 5%;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
 .first-e {
     position: relative;
     display: inline-block;
