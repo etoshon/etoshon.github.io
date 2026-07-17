@@ -110,6 +110,7 @@ nav a:hover {
     top: 5%;
     display: block;
     mix-blend-mode: multiply;
+    transform: rotate(-15deg);
 }
 
 #product-canvas {
