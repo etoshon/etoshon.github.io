@@ -25,10 +25,11 @@
             </div>
             <div class="hero-text">
                 <h1><span class="first-e">E<canvas id="tomato-canvas"></canvas></span>ton's Shonanigans</h1>
-                <p>Music &middot; Animation &middot; Photography &middot; Product</p>
+                <p>Music &middot; Animation &middot; Photography &middot; Projects</p>
             </div>
             <canvas id="photo-canvas"></canvas>
             <canvas id="music-canvas"></canvas>
+            <canvas id="product-canvas"></canvas>
         </div>
     </section>
 
@@ -150,6 +151,14 @@
              'images/photo/port_4_p.jpg', 'images/photo/port_5_p.jpg', 'images/photo/port_6_p.jpg'],
             330,
             'photography.html'
+        );
+
+        makeAnim(
+            'product-canvas',
+            ['images/product/frame_1_s.jpg', 'images/product/frame_2_s.jpg', 'images/product/frame_3_s.jpg'],
+            ['images/product/frame_1_p.jpg', 'images/product/frame_2_p.jpg', 'images/product/frame_3_p.jpg'],
+            330,
+            'product.html'
         );
 
         makeAnim(
