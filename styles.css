@@ -106,20 +106,20 @@ nav a:hover {
 
 #music-canvas {
     position: absolute;
-    left: calc(8% - 5px);
-    top: 5%;
+    left: calc(8% + 5px);
+    top: calc(5% - 35px);
     display: block;
     mix-blend-mode: multiply;
-    transform: rotate(-15deg);
+    transform: rotate(-20deg);
 }
 
 #product-canvas {
     position: absolute;
-    right: calc(8% + 10px);
+    right: calc(8% + 15px);
     top: 5%;
     display: block;
     mix-blend-mode: multiply;
-    transform: rotate(15deg);
+    transform: rotate(10deg);
 }
 
 .first-e {
