@@ -34,7 +34,7 @@
     </section>
 
     <script>
-        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight, clickUrl) {
+        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight, clickUrl, stickyBoundary) {
             const canvas = document.getElementById(canvasId);
             const ctx = canvas.getContext('2d');
             const bitmaps = { s: new Array(sSrcs.length), p: new Array(pSrcs.length) };
@@ -85,7 +85,16 @@
                         }
                     }
                 }
-                return { left, right };
+                let minX = w, maxX = -1, minY = h, maxY = -1;
+                for (let y = 0; y < h; y++) {
+                    if (right[y] >= left[y]) {
+                        if (left[y] < minX) minX = left[y];
+                        if (right[y] > maxX) maxX = right[y];
+                        if (y < minY) minY = y;
+                        if (y > maxY) maxY = y;
+                    }
+                }
+                return { left, right, minX, maxX, minY, maxY };
             }
 
             sSrcs.forEach((src, i) => loadSrc(src, bitmaps.s, i));
@@ -117,20 +126,36 @@
                     hovering = false;
                     return;
                 }
+                if (stickyBoundary && rowBounds) {
+                    hovering = x >= rowBounds.minX && x <= rowBounds.maxX &&
+                        y >= rowBounds.minY && y <= rowBounds.maxY;
+                    return;
+                }
                 const px = ctx.getImageData(x, y, 1, 1).data;
                 const onDrawn = (255 - px[0]) + (255 - px[1]) + (255 - px[2]) > 20;
                 const insideBoundary = rowBounds && x >= rowBounds.left[y] && x <= rowBounds.right[y];
                 hovering = onDrawn || insideBoundary;
             }
 
-            canvas.addEventListener('mousemove', e => {
-                checkHover(e);
-                canvas.style.cursor = hovering ? 'pointer' : 'default';
-            });
-            canvas.addEventListener('mouseleave', () => {
-                hovering = false;
-                canvas.style.cursor = 'default';
-            });
+            if (stickyBoundary) {
+                // Overlapping sibling canvases can sit on top of this one within its own
+                // box, causing spurious mouseleave/mousemove churn on this element as the
+                // cursor passes under them. Track from document so hover state depends
+                // only on cursor position, not which element is topmost at that point.
+                document.addEventListener('mousemove', e => {
+                    checkHover(e);
+                    canvas.style.cursor = hovering ? 'pointer' : 'default';
+                });
+            } else {
+                canvas.addEventListener('mousemove', e => {
+                    checkHover(e);
+                    canvas.style.cursor = hovering ? 'pointer' : 'default';
+                });
+                canvas.addEventListener('mouseleave', () => {
+                    hovering = false;
+                    canvas.style.cursor = 'default';
+                });
+            }
             canvas.addEventListener('click', () => {
                 if (hovering && clickUrl) window.location.href = clickUrl;
             });
@@ -141,7 +166,8 @@
             ['images/about/about_1_s.jpg', 'images/about/about_2_s.jpg', 'images/about/about_3_s.jpg'],
             ['images/about/about_1_p.jpg', 'images/about/about_2_p.jpg', 'images/about/about_3_p.jpg'],
             520,
-            'about.html'
+            'about.html',
+            true
         );
 
         makeAnim(
