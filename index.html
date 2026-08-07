@@ -115,6 +115,25 @@
                 requestAnimationFrame(tick);
             }
 
+            function hasInkAt(clientX, clientY) {
+                if (!ready) return false;
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                const x = Math.floor((clientX - rect.left) * scaleX);
+                const y = Math.floor((clientY - rect.top) * scaleY);
+                if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return false;
+                const px = ctx.getImageData(x, y, 1, 1).data;
+                const onDrawn = (255 - px[0]) + (255 - px[1]) + (255 - px[2]) > 20;
+                const insideBoundary = rowBounds && x >= rowBounds.left[y] && x <= rowBounds.right[y];
+                return onDrawn || insideBoundary;
+            }
+
+            // Shared registry so overlapping canvases can check whether a sibling has
+            // actual drawn content (vs. blank/blended-out background) at a given point.
+            window.__animInkTest = window.__animInkTest || {};
+            window.__animInkTest[canvasId] = hasInkAt;
+
             function checkHover(e) {
                 if (!ready) return;
                 const rect = canvas.getBoundingClientRect();
@@ -131,20 +150,28 @@
                         y >= rowBounds.minY && y <= rowBounds.maxY;
                     return;
                 }
-                const px = ctx.getImageData(x, y, 1, 1).data;
-                const onDrawn = (255 - px[0]) + (255 - px[1]) + (255 - px[2]) > 20;
-                const insideBoundary = rowBounds && x >= rowBounds.left[y] && x <= rowBounds.right[y];
-                hovering = onDrawn || insideBoundary;
+                hovering = hasInkAt(e.clientX, e.clientY);
             }
 
             if (stickyBoundary) {
                 // Overlapping sibling canvases can sit on top of this one within its own
-                // box, causing spurious mouseleave/mousemove churn on this element as the
-                // cursor passes under them. Track from document so hover state depends
-                // only on cursor position, not which element is topmost at that point.
+                // box, causing spurious mouseleave/mousemove churn (and swallowed clicks)
+                // on this element as the cursor passes under them. Track from document so
+                // hover/click behavior depends only on cursor position, not which element
+                // is topmost at that point.
                 document.addEventListener('mousemove', e => {
                     checkHover(e);
                     canvas.style.cursor = hovering ? 'pointer' : 'default';
+                });
+                document.addEventListener('click', e => {
+                    checkHover(e);
+                    if (!hovering || !clickUrl) return;
+                    const topEl = document.elementFromPoint(e.clientX, e.clientY);
+                    if (topEl && topEl !== canvas && topEl.id) {
+                        const siblingInkTest = window.__animInkTest[topEl.id];
+                        if (siblingInkTest && siblingInkTest(e.clientX, e.clientY)) return;
+                    }
+                    window.location.href = clickUrl;
                 });
             } else {
                 canvas.addEventListener('mousemove', e => {
@@ -155,10 +182,10 @@
                     hovering = false;
                     canvas.style.cursor = 'default';
                 });
+                canvas.addEventListener('click', () => {
+                    if (hovering && clickUrl) window.location.href = clickUrl;
+                });
             }
-            canvas.addEventListener('click', () => {
-                if (hovering && clickUrl) window.location.href = clickUrl;
-            });
         }
 
         makeAnim(
