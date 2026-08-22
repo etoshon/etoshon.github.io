@@ -34,7 +34,8 @@
     </section>
 
     <script>
-        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight, clickUrl, stickyBoundary) {
+        function makeAnim(canvasId, sSrcs, pSrcs, displayHeight, clickUrl, stickyBoundary, speedMultiplier) {
+            speedMultiplier = speedMultiplier || 1;
             const canvas = document.getElementById(canvasId);
             const ctx = canvas.getContext('2d');
             const bitmaps = { s: new Array(sSrcs.length), p: new Array(pSrcs.length) };
@@ -101,7 +102,7 @@
             pSrcs.forEach((src, i) => loadSrc(src, bitmaps.p, i));
 
             function startLoop() {
-                const interval = 1000 / 12;
+                const interval = 1000 / (12 * speedMultiplier);
                 let frame = 0, last = 0;
                 function tick(ts) {
                     if (ts - last >= interval) {
@@ -212,7 +213,9 @@
             ['images/product/frame_1_p.png', 'images/product/frame_2_p.png', 'images/product/frame_3_p.png',
              'images/product/frame_4_p.png', 'images/product/frame_5_p.png', 'images/product/frame_6_p.png'],
             330,
-            'product.html'
+            'product.html',
+            false,
+            1.5
         );
 
         makeAnim(
